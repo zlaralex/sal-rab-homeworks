@@ -42,7 +42,16 @@ function sendRequest(name, phone, address, goods, sum) {
         data.goods.push(goods[i].title);
     }
 
-    data.order.address = address.join (', ');
+    data.order.address = "ул.: " + address.street + ", дом " + address.house;
+    if (address.entrance != "") data.order.address += ", подъезд/корпус: " + address.entrance;
+    if (address.floor != "") data.order.address += ", этаж: " + address.floor;
+    if (address.flat != "") {
+        data.order.address += ", квартира: " + address.flat;
+    } else {
+        alert("Вы забыли указать квартиру! Без этого не доставим :(");
+        break;
+    }
+    
     data.order.sum = sum;
 
     data.client = "Имя клиента: " + name + ", контактный телефон: " + phone;
