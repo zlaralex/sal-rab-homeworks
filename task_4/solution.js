@@ -18,6 +18,7 @@ function renderProductsCards(json) {
     let i =0;
     while (i < length - 1) {
         addProduct(products[i]);
+        i++;
     }
 }
 // Напишите функцию renderProductsCards(json)
