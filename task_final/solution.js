@@ -49,7 +49,7 @@ function sendRequest(name, phone, address, goods, sum) {
         data.order.address += ", квартира: " + address.flat;
     } else {
         alert("Вы забыли указать квартиру! Без этого не доставим :(");
-        break;
+        return null;
     }
     
     data.order.sum = sum;
