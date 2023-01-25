@@ -34,7 +34,7 @@
 // }
 
 function sendRequest(name, phone, address, goods, sum) {
-    let data = {goods: [], order: {}};
+    let data = {client: name + " " + phone, order: {}, goods: []};
 
     let countOfGoods = goods.length;
     
@@ -42,21 +42,10 @@ function sendRequest(name, phone, address, goods, sum) {
         data.goods.push({title: goods[i].title, count: goods[i].count});        
     }
 
-    data.order.address = "ул.: " + address.street + ", дом " + address.house;
-    if (address.entrance != "") data.order.address += ", подъезд/корпус: " + address.entrance;
-    if (address.floor != "") data.order.address += ", этаж: " + address.floor;
-    if (address.flat != "") {
-        data.order.address += ", квартира: " + address.flat;
-    } else {
-        alert("Вы забыли указать квартиру! Без этого не доставим :(");
-        return null;
-    }
-    
+    data.order.address = `ул. ${address.street}, дом ${address.house}, ${address.entrance} подъезд, ${address.floor} этаж, кв. ${address.flat}`;    
     data.order.sum = sum;
-
-    data.client = "Имя клиента: " + name + ", контактный телефон: " + phone;
-
-    let jsonData = JSON.stringify(data);
-
+    
+    let jsonData = "data: " + JSON.stringify(data);
+    console.log (jsonData);
     return jsonData;
 }
